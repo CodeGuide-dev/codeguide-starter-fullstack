@@ -5,20 +5,16 @@ import Link from "next/link"
 import Image from "next/image"
 import { useSession } from "@/lib/auth-client"
 import {
-  IconCamera,
-  IconChartBar,
   IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
   IconHelp,
-  IconListDetails,
-  IconReport,
   IconSearch,
   IconSettings,
-  IconUsers,
+  IconWallet,
+  IconTrendingUp,
+  IconCreditCard,
+  IconTarget,
+  IconChartPie,
+  IconPlus,
 } from "@tabler/icons-react"
 
 import { NavDocuments } from "@/components/nav-documents"
@@ -38,75 +34,86 @@ import {
 const staticData = {
   navMain: [
     {
-      title: "Dashboard",
-      url: "#",
+      title: "Overview",
+      url: "/dashboard",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: "Assets",
+      url: "/dashboard/assets",
+      icon: IconWallet,
     },
     {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
+      title: "Investments",
+      url: "/dashboard/investments",
+      icon: IconTrendingUp,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
+      title: "Expenses",
+      url: "/dashboard/expenses",
+      icon: IconCreditCard,
     },
     {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
+      title: "Income",
+      url: "/dashboard/income",
+      icon: IconTarget,
     },
   ],
-  navClouds: [
+  navQuickActions: [
     {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
+      title: "Add Asset",
+      icon: IconWallet,
+      url: "/dashboard/assets?action=add",
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: "Real Estate",
+          url: "/dashboard/assets?action=add&type=real_estate",
         },
         {
-          title: "Archived",
-          url: "#",
+          title: "Vehicle",
+          url: "/dashboard/assets?action=add&type=vehicle",
+        },
+        {
+          title: "Savings",
+          url: "/dashboard/assets?action=add&type=savings",
         },
       ],
     },
     {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
+      title: "Add Investment",
+      icon: IconTrendingUp,
+      url: "/dashboard/investments?action=add",
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: "Stocks",
+          url: "/dashboard/investments?action=add&type=stocks",
         },
         {
-          title: "Archived",
-          url: "#",
+          title: "Crypto",
+          url: "/dashboard/investments?action=add&type=crypto",
+        },
+        {
+          title: "ETF",
+          url: "/dashboard/investments?action=add&type=etf",
         },
       ],
     },
     {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
+      title: "Add Expense",
+      icon: IconCreditCard,
+      url: "/dashboard/expenses?action=add",
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: "Housing",
+          url: "/dashboard/expenses?action=add&category=housing",
         },
         {
-          title: "Archived",
-          url: "#",
+          title: "Food",
+          url: "/dashboard/expenses?action=add&category=food",
+        },
+        {
+          title: "Transportation",
+          url: "/dashboard/expenses?action=add&category=transportation",
         },
       ],
     },
@@ -114,7 +121,7 @@ const staticData = {
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/dashboard/settings",
       icon: IconSettings,
     },
     {
@@ -128,21 +135,11 @@ const staticData = {
       icon: IconSearch,
     },
   ],
-  documents: [
+  reports: [
     {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
+      name: "Analytics",
+      url: "/dashboard/analytics",
+      icon: IconChartPie,
     },
   ],
 }
@@ -170,8 +167,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link href="/">
-                <Image src="/codeguide-logo.png" alt="CodeGuide" width={32} height={32} className="rounded-lg" />
-                <span className="text-base font-semibold font-parkinsans">CodeGuide</span>
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-blue-600 flex items-center justify-center">
+                  <IconWallet className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-base font-semibold">Claude Finance</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -179,7 +178,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={staticData.navMain} />
-        <NavDocuments items={staticData.documents} />
+        <NavDocuments items={staticData.navQuickActions} />
+        <NavDocuments items={staticData.reports} />
         <NavSecondary items={staticData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
