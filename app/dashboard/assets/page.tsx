@@ -10,47 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Edit, Trash2, Wallet, Home, Car, Banknote } from "lucide-react";
-import { ASSET_TYPES } from "@/lib/types/finance";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Plus, Edit, Trash2, Wallet, Home, Car, Banknote, AlertCircle, RefreshCw } from "lucide-react";
+import { ASSET_TYPES, Asset } from "@/lib/types/finance";
+import { useAssets } from "@/hooks/use-assets";
 
-interface Asset {
-  id: string;
-  name: string;
-  type: string;
-  value: number;
-  description?: string;
-  purchaseDate?: string;
-  createdAt: string;
-}
-
-const mockAssets: Asset[] = [
-  {
-    id: "1",
-    name: "Primary Residence",
-    type: "real_estate",
-    value: 450000,
-    description: "3BR/2BA house in downtown",
-    purchaseDate: "2020-05-15",
-    createdAt: "2024-01-01T00:00:00Z",
-  },
-  {
-    id: "2", 
-    name: "2019 Honda Civic",
-    type: "vehicle",
-    value: 18500,
-    description: "Reliable daily driver",
-    purchaseDate: "2019-03-20",
-    createdAt: "2024-01-01T00:00:00Z",
-  },
-  {
-    id: "3",
-    name: "Emergency Fund",
-    type: "savings",
-    value: 25000,
-    description: "High-yield savings account",
-    createdAt: "2024-01-01T00:00:00Z",
-  },
-];
 
 const getAssetIcon = (type: string) => {
   switch (type) {
@@ -71,9 +36,10 @@ const getAssetTypeLabel = (type: string) => {
 };
 
 export default function AssetsPage() {
-  const [assets, setAssets] = useState<Asset[]>(mockAssets);
+  const { assets, isLoading, error, createAsset, updateAsset, deleteAsset, refetch } = useAssets();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingAsset, setEditingAsset] = useState<Asset | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     type: "",
@@ -82,28 +48,40 @@ export default function AssetsPage() {
     purchaseDate: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    const newAsset: Asset = {
-      id: editingAsset?.id || Date.now().toString(),
+    const data = {
       name: formData.name,
       type: formData.type,
       value: parseFloat(formData.value),
-      description: formData.description,
-      purchaseDate: formData.purchaseDate,
-      createdAt: editingAsset?.createdAt || new Date().toISOString(),
+      description: formData.description || undefined,
+      purchaseDate: formData.purchaseDate || undefined,
     };
 
-    if (editingAsset) {
-      setAssets(assets.map(asset => asset.id === editingAsset.id ? newAsset : asset));
-      setEditingAsset(null);
-    } else {
-      setAssets([...assets, newAsset]);
-      setIsAddDialogOpen(false);
-    }
+    try {
+      let success = false;
+      if (editingAsset) {
+        success = await updateAsset(editingAsset.id, data);
+        if (success) {
+          setEditingAsset(null);
+        }
+      } else {
+        success = await createAsset(data);
+        if (success) {
+          setIsAddDialogOpen(false);
+        }
+      }
 
-    setFormData({ name: "", type: "", value: "", description: "", purchaseDate: "" });
+      if (success) {
+        setFormData({ name: "", type: "", value: "", description: "", purchaseDate: "" });
+      }
+    } catch (err) {
+      // Error is handled by the hook
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleEdit = (asset: Asset) => {
@@ -117,11 +95,41 @@ export default function AssetsPage() {
     });
   };
 
-  const handleDelete = (id: string) => {
-    setAssets(assets.filter(asset => asset.id !== id));
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this asset?')) {
+      await deleteAsset(id);
+    }
   };
 
   const totalValue = assets.reduce((sum, asset) => sum + asset.value, 0);
+
+  if (error) {
+    return (
+      <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold">Assets</h1>
+          <p className="text-muted-foreground">
+            Manage your assets and track their value over time
+          </p>
+        </div>
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            Error loading assets: {error}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => refetch()}
+              className="ml-2"
+            >
+              <RefreshCw className="h-4 w-4 mr-1" />
+              Retry
+            </Button>
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
@@ -210,10 +218,17 @@ export default function AssetsPage() {
               </div>
 
               <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => setIsAddDialogOpen(false)}
+                  disabled={isSubmitting}
+                >
                   Cancel
                 </Button>
-                <Button type="submit">Add Asset</Button>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Adding..." : "Add Asset"}
+                </Button>
               </div>
             </form>
           </DialogContent>
@@ -232,12 +247,20 @@ export default function AssetsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold text-emerald-600">
-            ${totalValue.toLocaleString()}
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Across {assets.length} asset{assets.length !== 1 ? 's' : ''}
-          </p>
+          {isLoading ? (
+            <Skeleton className="h-12 w-32 mb-2" />
+          ) : (
+            <div className="text-3xl font-bold text-emerald-600">
+              ${totalValue.toLocaleString()}
+            </div>
+          )}
+          {isLoading ? (
+            <Skeleton className="h-4 w-24" />
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Across {assets.length} asset{assets.length !== 1 ? 's' : ''}
+            </p>
+          )}
         </CardContent>
       </Card>
 
@@ -259,55 +282,94 @@ export default function AssetsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {assets.map((asset) => (
-                <TableRow key={asset.id}>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      {getAssetIcon(asset.type)}
-                      <div>
-                        <div className="font-medium">{asset.name}</div>
-                        {asset.description && (
-                          <div className="text-sm text-muted-foreground">
-                            {asset.description}
-                          </div>
-                        )}
+              {isLoading ? (
+                Array.from({ length: 3 }).map((_, i) => (
+                  <TableRow key={i}>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Skeleton className="h-4 w-4" />
+                        <div>
+                          <Skeleton className="h-4 w-32 mb-1" />
+                          <Skeleton className="h-3 w-20" />
+                        </div>
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">
-                      {getAssetTypeLabel(asset.type)}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="font-medium">
-                    ${asset.value.toLocaleString()}
-                  </TableCell>
-                  <TableCell>
-                    {asset.purchaseDate 
-                      ? new Date(asset.purchaseDate).toLocaleDateString()
-                      : "—"
-                    }
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleEdit(asset)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleDelete(asset.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-6 w-16" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-20" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-16" />
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <Skeleton className="h-8 w-8" />
+                        <Skeleton className="h-8 w-8" />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : assets.length > 0 ? (
+                assets.map((asset) => (
+                  <TableRow key={asset.id}>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        {getAssetIcon(asset.type)}
+                        <div>
+                          <div className="font-medium">{asset.name}</div>
+                          {asset.description && (
+                            <div className="text-sm text-muted-foreground">
+                              {asset.description}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">
+                        {getAssetTypeLabel(asset.type)}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="font-medium">
+                      ${asset.value.toLocaleString()}
+                    </TableCell>
+                    <TableCell>
+                      {asset.purchaseDate 
+                        ? new Date(asset.purchaseDate).toLocaleDateString()
+                        : "—"
+                      }
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleEdit(asset)}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDelete(asset.id)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-8">
+                    <div className="text-muted-foreground">
+                      No assets found. Add your first asset to get started.
                     </div>
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -386,10 +448,17 @@ export default function AssetsPage() {
               </div>
 
               <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={() => setEditingAsset(null)}>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => setEditingAsset(null)}
+                  disabled={isSubmitting}
+                >
                   Cancel
                 </Button>
-                <Button type="submit">Update Asset</Button>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Updating..." : "Update Asset"}
+                </Button>
               </div>
             </form>
           </DialogContent>

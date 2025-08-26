@@ -3,6 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   DollarSign,
   TrendingUp,
@@ -11,27 +13,65 @@ import {
   Plus,
   ArrowUpRight,
   ArrowDownRight,
+  RefreshCw,
+  AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
+import { useFinanceSummary, useFinanceData } from "@/hooks/use-finance-data";
 
 export default function DashboardPage() {
-  const mockData = {
-    totalAssets: 125000,
-    totalInvestments: 85000,
-    monthlyExpenses: 3200,
-    monthlyIncome: 7500,
-    netWorth: 206800,
-    investmentGain: 8.5,
-    expenseChange: -2.1,
-    incomeChange: 5.2,
-  };
+  const { totalAssets, totalInvestments, monthlyExpenses, monthlyIncome, netWorth, isLoading: summaryLoading, error: summaryError } = useFinanceSummary();
+  const { data: financeData, isLoading: dataLoading, error: dataError, refetch } = useFinanceData();
 
+  const isLoading = summaryLoading || dataLoading;
+  const error = summaryError || dataError;
+
+  // Get recent transactions from expenses and income (last 5)
   const recentTransactions = [
-    { id: 1, title: "Groceries", amount: -120.50, category: "Food", date: "2024-01-15" },
-    { id: 2, title: "Salary", amount: 5000, category: "Income", date: "2024-01-14" },
-    { id: 3, title: "Gas", amount: -55.20, category: "Transportation", date: "2024-01-13" },
-  ];
+    ...financeData.expenses.slice(-3).map(expense => ({
+      id: `expense-${expense.id}`,
+      title: expense.description || 'Expense',
+      amount: -expense.amount,
+      category: expense.category,
+      date: new Date(expense.date).toLocaleDateString(),
+    })),
+    ...financeData.income.slice(-2).map(income => ({
+      id: `income-${income.id}`,
+      title: income.description || income.source,
+      amount: income.amount,
+      category: income.source,
+      date: new Date(income.date).toLocaleDateString(),
+    }))
+  ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 5);
+
+  if (error) {
+    return (
+      <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold">Financial Overview</h1>
+          <p className="text-muted-foreground">
+            Track your financial health and make informed decisions
+          </p>
+        </div>
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            Error loading financial data: {error}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => refetch()}
+              className="ml-2"
+            >
+              <RefreshCw className="h-4 w-4 mr-1" />
+              Retry
+            </Button>
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
@@ -51,7 +91,11 @@ export default function DashboardPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${mockData.totalAssets.toLocaleString()}</div>
+            {isLoading ? (
+              <Skeleton className="h-8 w-24 mb-2" />
+            ) : (
+              <div className="text-2xl font-bold">${totalAssets.toLocaleString()}</div>
+            )}
             <p className="text-xs text-muted-foreground">
               Real estate, vehicles, savings
             </p>
@@ -64,10 +108,13 @@ export default function DashboardPage() {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${mockData.totalInvestments.toLocaleString()}</div>
-            <p className="text-xs text-green-600 flex items-center">
-              <ArrowUpRight className="h-3 w-3 mr-1" />
-              +{mockData.investmentGain}% from last month
+            {isLoading ? (
+              <Skeleton className="h-8 w-24 mb-2" />
+            ) : (
+              <div className="text-2xl font-bold">${totalInvestments.toLocaleString()}</div>
+            )}
+            <p className="text-xs text-muted-foreground">
+              Stocks, bonds, crypto
             </p>
           </CardContent>
         </Card>
@@ -78,10 +125,13 @@ export default function DashboardPage() {
             <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${mockData.monthlyExpenses.toLocaleString()}</div>
-            <p className="text-xs text-green-600 flex items-center">
-              <ArrowDownRight className="h-3 w-3 mr-1" />
-              {mockData.expenseChange}% from last month
+            {isLoading ? (
+              <Skeleton className="h-8 w-24 mb-2" />
+            ) : (
+              <div className="text-2xl font-bold">${monthlyExpenses.toLocaleString()}</div>
+            )}
+            <p className="text-xs text-muted-foreground">
+              This month's spending
             </p>
           </CardContent>
         </Card>
@@ -92,10 +142,13 @@ export default function DashboardPage() {
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${mockData.monthlyIncome.toLocaleString()}</div>
-            <p className="text-xs text-green-600 flex items-center">
-              <ArrowUpRight className="h-3 w-3 mr-1" />
-              +{mockData.incomeChange}% from last month
+            {isLoading ? (
+              <Skeleton className="h-8 w-24 mb-2" />
+            ) : (
+              <div className="text-2xl font-bold">${monthlyIncome.toLocaleString()}</div>
+            )}
+            <p className="text-xs text-muted-foreground">
+              This month's earnings
             </p>
           </CardContent>
         </Card>
@@ -109,21 +162,37 @@ export default function DashboardPage() {
             <CardDescription>Your total financial position</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-emerald-600">
-              ${mockData.netWorth.toLocaleString()}
-            </div>
+            {isLoading ? (
+              <Skeleton className="h-12 w-32 mb-4" />
+            ) : (
+              <div className="text-3xl font-bold text-emerald-600">
+                ${netWorth.toLocaleString()}
+              </div>
+            )}
             <div className="mt-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span>Assets</span>
-                <span className="font-medium">${mockData.totalAssets.toLocaleString()}</span>
+                {isLoading ? (
+                  <Skeleton className="h-4 w-16" />
+                ) : (
+                  <span className="font-medium">${totalAssets.toLocaleString()}</span>
+                )}
               </div>
               <div className="flex justify-between text-sm">
                 <span>Investments</span>
-                <span className="font-medium">${mockData.totalInvestments.toLocaleString()}</span>
+                {isLoading ? (
+                  <Skeleton className="h-4 w-16" />
+                ) : (
+                  <span className="font-medium">${totalInvestments.toLocaleString()}</span>
+                )}
               </div>
               <div className="flex justify-between text-sm text-muted-foreground border-t pt-2">
                 <span>Total Net Worth</span>
-                <span className="font-medium">${mockData.netWorth.toLocaleString()}</span>
+                {isLoading ? (
+                  <Skeleton className="h-4 w-16" />
+                ) : (
+                  <span className="font-medium">${netWorth.toLocaleString()}</span>
+                )}
               </div>
             </div>
           </CardContent>
@@ -181,22 +250,43 @@ export default function DashboardPage() {
           <CardDescription>Your latest financial transactions</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            {recentTransactions.map((transaction) => (
-              <div key={transaction.id} className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="font-medium">{transaction.title}</span>
-                  <span className="text-sm text-muted-foreground">{transaction.category}</span>
+          {isLoading ? (
+            <div className="space-y-3">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-3 w-20" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Skeleton className="h-3 w-16" />
+                    <Skeleton className="h-6 w-16" />
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">{transaction.date}</span>
-                  <Badge variant={transaction.amount > 0 ? "default" : "secondary"}>
-                    {transaction.amount > 0 ? "+" : ""}${Math.abs(transaction.amount)}
-                  </Badge>
+              ))}
+            </div>
+          ) : recentTransactions.length > 0 ? (
+            <div className="space-y-3">
+              {recentTransactions.map((transaction) => (
+                <div key={transaction.id} className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="font-medium">{transaction.title}</span>
+                    <span className="text-sm text-muted-foreground">{transaction.category}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">{transaction.date}</span>
+                    <Badge variant={transaction.amount > 0 ? "default" : "secondary"}>
+                      {transaction.amount > 0 ? "+" : ""}${Math.abs(transaction.amount).toLocaleString()}
+                    </Badge>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-4 text-muted-foreground">
+              No recent transactions found. Start by adding some expenses or income.
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
