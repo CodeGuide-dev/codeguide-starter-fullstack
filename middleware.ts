@@ -1,28 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from './lib/auth';
+import { getSessionCookie } from "better-auth/cookies";
 
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl;
+
+  const session = getSessionCookie(request);
+
+  console.log({session});
   
   // Only protect dashboard routes
   if (url.pathname.startsWith('/dashboard')) {
-    try {
-      const session = await auth.api.getSession({
-        headers: request.headers
-      });
-
-      // If no session, redirect to sign-in
-      if (!session?.user) {
-        const signInUrl = new URL('/sign-in', request.url);
-        signInUrl.searchParams.set('redirect', url.pathname);
-        return NextResponse.redirect(signInUrl);
-      }
-
-      // User is authenticated, allow access
-      return NextResponse.next();
-    } catch (error) {
-      console.error('Middleware authentication error:', error);
-      // On error, redirect to sign-in for safety
+    // Check for auth cookie (simplified check for edge runtime)
+    
+    // If no auth token, redirect to sign-in
+    if (!session) {
       const signInUrl = new URL('/sign-in', request.url);
       signInUrl.searchParams.set('redirect', url.pathname);
       return NextResponse.redirect(signInUrl);

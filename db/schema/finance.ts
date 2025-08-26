@@ -1,5 +1,6 @@
 import { pgTable, text, timestamp, decimal, pgEnum } from "drizzle-orm/pg-core";
 import { user } from "./auth";
+import { sql } from "drizzle-orm";
 
 export const assetTypeEnum = pgEnum("asset_type", [
     "real_estate",
@@ -48,7 +49,7 @@ export const incomeTypeEnum = pgEnum("income_type", [
 ]);
 
 export const assets = pgTable("assets", {
-    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    id: text("id").primaryKey().default(sql`gen_random_uuid()`),
     userId: text("user_id")
         .notNull()
         .references(() => user.id, { onDelete: "cascade" }),
@@ -67,7 +68,7 @@ export const assets = pgTable("assets", {
 });
 
 export const investments = pgTable("investments", {
-    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    id: text("id").primaryKey().default(sql`gen_random_uuid()`),
     userId: text("user_id")
         .notNull()
         .references(() => user.id, { onDelete: "cascade" }),
@@ -89,7 +90,7 @@ export const investments = pgTable("investments", {
 });
 
 export const expenses = pgTable("expenses", {
-    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    id: text("id").primaryKey().default(sql`gen_random_uuid()`),
     userId: text("user_id")
         .notNull()
         .references(() => user.id, { onDelete: "cascade" }),
@@ -109,7 +110,7 @@ export const expenses = pgTable("expenses", {
 });
 
 export const income = pgTable("income", {
-    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    id: text("id").primaryKey().default(sql`gen_random_uuid()`),
     userId: text("user_id")
         .notNull()
         .references(() => user.id, { onDelete: "cascade" }),

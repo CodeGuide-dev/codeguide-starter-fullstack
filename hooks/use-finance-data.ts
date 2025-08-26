@@ -87,22 +87,22 @@ export function useFinanceSummary(): FinanceSummary & { isLoading: boolean; erro
   const { data, isLoading, error } = useFinanceData();
 
   const summary = {
-    totalAssets: data.assets.reduce((sum, asset) => sum + asset.value, 0),
-    totalInvestments: data.investments.reduce((sum, investment) => sum + investment.currentValue, 0),
+    totalAssets: data.assets.reduce((sum, asset) => sum + Number(asset.value), 0),
+    totalInvestments: data.investments.reduce((sum, investment) => sum + Number(investment.currentPrice), 0),
     monthlyExpenses: data.expenses
       .filter(expense => {
         const expenseDate = new Date(expense.date);
         const now = new Date();
         return expenseDate.getMonth() === now.getMonth() && expenseDate.getFullYear() === now.getFullYear();
       })
-      .reduce((sum, expense) => sum + expense.amount, 0),
+      .reduce((sum, expense) => sum + Number(expense.amount), 0),
     monthlyIncome: data.income
       .filter(income => {
         const incomeDate = new Date(income.date);
         const now = new Date();
         return incomeDate.getMonth() === now.getMonth() && incomeDate.getFullYear() === now.getFullYear();
       })
-      .reduce((sum, income) => sum + income.amount, 0),
+      .reduce((sum, income) => sum + Number(income.amount), 0),
     netWorth: 0,
   };
 

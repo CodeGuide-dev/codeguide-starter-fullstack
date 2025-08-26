@@ -63,12 +63,24 @@ export default function AssetsPage() {
     try {
       let success = false;
       if (editingAsset) {
-        success = await updateAsset(editingAsset.id, data);
+        success = await updateAsset(editingAsset.id, {
+          name: data.name,
+          type: data.type as "real_estate" | "vehicle" | "cash" | "savings" | "other",
+          value: String(data.value) ,
+          description: data.description,
+          purchaseDate: data.purchaseDate,
+        });
         if (success) {
           setEditingAsset(null);
         }
       } else {
-        success = await createAsset(data);
+        success = await createAsset({
+          name: data.name,
+          type: data.type as "real_estate" | "vehicle" | "cash" | "savings" | "other",
+          value: String(data.value),
+          description: data.description,
+          purchaseDate: data.purchaseDate,
+        });
         if (success) {
           setIsAddDialogOpen(false);
         }
@@ -91,7 +103,7 @@ export default function AssetsPage() {
       type: asset.type,
       value: asset.value.toString(),
       description: asset.description || "",
-      purchaseDate: asset.purchaseDate || "",
+      purchaseDate: asset.purchaseDate ? new Date(asset.purchaseDate).toISOString().split('T')[0] : "",
     });
   };
 
@@ -101,7 +113,7 @@ export default function AssetsPage() {
     }
   };
 
-  const totalValue = assets.reduce((sum, asset) => sum + asset.value, 0);
+  const totalValue = assets.reduce((sum, asset) => sum + Number(asset.value), 0);
 
   if (error) {
     return (

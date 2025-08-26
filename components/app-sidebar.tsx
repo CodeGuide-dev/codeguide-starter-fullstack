@@ -61,6 +61,7 @@ const staticData = {
   ],
   navQuickActions: [
     {
+      name: "Add Asset",
       title: "Add Asset",
       icon: IconWallet,
       url: "/dashboard/assets?action=add",
@@ -80,6 +81,7 @@ const staticData = {
       ],
     },
     {
+      name: "Add Investment",
       title: "Add Investment",
       icon: IconTrendingUp,
       url: "/dashboard/investments?action=add",
@@ -99,6 +101,7 @@ const staticData = {
       ],
     },
     {
+      name: "Add Expense",
       title: "Add Expense",
       icon: IconCreditCard,
       url: "/dashboard/expenses?action=add",
@@ -120,16 +123,19 @@ const staticData = {
   ],
   navSecondary: [
     {
+      name: "Settings",
       title: "Settings",
       url: "/dashboard/settings",
       icon: IconSettings,
     },
     {
+      name: "Get Help",
       title: "Get Help",
       url: "#",
       icon: IconHelp,
     },
     {
+      name: "Search",
       title: "Search",
       url: "#",
       icon: IconSearch,

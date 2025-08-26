@@ -51,7 +51,7 @@ export async function PUT(
 
         if (!validationResult.success) {
             return createErrorResponse(
-                validationResult.error.errors.map(e => e.message).join(', '),
+                validationResult.error.issues.map(e => e.message).join(', '),
                 400
             );
         }

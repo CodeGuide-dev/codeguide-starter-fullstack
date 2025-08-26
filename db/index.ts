@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import * as auth from './schema/auth';
 import * as finance from './schema/finance';

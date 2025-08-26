@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
         if (!validationResult.success) {
             return createErrorResponse(
-                validationResult.error.errors.map(e => e.message).join(', '),
+                validationResult.error.issues.map(e => e.message).join(', '),
                 400
             );
         }
@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
         const newAsset = await db
             .insert(finance.assets)
             .values({
+                id: crypto.randomUUID(),
                 userId: user.id,
                 name,
                 type,
