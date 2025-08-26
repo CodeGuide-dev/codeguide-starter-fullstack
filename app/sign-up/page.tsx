@@ -74,9 +74,9 @@ export default function SignUpPage() {
         <div className="min-h-screen flex items-center justify-center bg-background px-4 py-8">
             <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Join Claude Finance</CardTitle>
                     <CardDescription>
-                        Enter your details to create a new account
+                        Start your journey to financial freedom today
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -96,7 +96,7 @@ export default function SignUpPage() {
                                         <FormLabel>Full Name</FormLabel>
                                         <FormControl>
                                             <Input
-                                                placeholder="Enter your full name"
+                                                placeholder="Your full name"
                                                 {...field}
                                                 disabled={isLoading}
                                             />
@@ -115,7 +115,7 @@ export default function SignUpPage() {
                                         <FormControl>
                                             <Input
                                                 type="email"
-                                                placeholder="Enter your email"
+                                                placeholder="your.email@example.com"
                                                 {...field}
                                                 disabled={isLoading}
                                             />
@@ -135,7 +135,7 @@ export default function SignUpPage() {
                                             <div className="relative">
                                                 <Input
                                                     type={showPassword ? "text" : "password"}
-                                                    placeholder="Create a strong password"
+                                                    placeholder="Secure your financial data"
                                                     {...field}
                                                     disabled={isLoading}
                                                     className="pr-10"
@@ -197,14 +197,14 @@ export default function SignUpPage() {
                                 )}
                             />
 
-                            <Button type="submit" className="w-full" disabled={isLoading}>
+                            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Creating account...
+                                        Creating your account...
                                     </>
                                 ) : (
-                                    "Create Account"
+                                    "Start Managing My Finances"
                                 )}
                             </Button>
                         </form>

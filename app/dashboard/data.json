@@ -1,614 +1,362 @@
-[
-  {
-    "id": 1,
-    "header": "Cover page",
-    "type": "Cover page",
-    "status": "In Process",
-    "target": "18",
-    "limit": "5",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 2,
-    "header": "Table of contents",
-    "type": "Table of contents",
-    "status": "Done",
-    "target": "29",
-    "limit": "24",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 3,
-    "header": "Executive summary",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "10",
-    "limit": "13",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 4,
-    "header": "Technical approach",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "27",
-    "limit": "23",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 5,
-    "header": "Design",
-    "type": "Narrative",
-    "status": "In Process",
-    "target": "2",
-    "limit": "16",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 6,
-    "header": "Capabilities",
-    "type": "Narrative",
-    "status": "In Process",
-    "target": "20",
-    "limit": "8",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 7,
-    "header": "Integration with existing systems",
-    "type": "Narrative",
-    "status": "In Process",
-    "target": "19",
-    "limit": "21",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 8,
-    "header": "Innovation and Advantages",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "25",
-    "limit": "26",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 9,
-    "header": "Overview of EMR's Innovative Solutions",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "7",
-    "limit": "23",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 10,
-    "header": "Advanced Algorithms and Machine Learning",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "30",
-    "limit": "28",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 11,
-    "header": "Adaptive Communication Protocols",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "9",
-    "limit": "31",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 12,
-    "header": "Advantages Over Current Technologies",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "12",
-    "limit": "0",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 13,
-    "header": "Past Performance",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "22",
-    "limit": "33",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 14,
-    "header": "Customer Feedback and Satisfaction Levels",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "15",
-    "limit": "34",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 15,
-    "header": "Implementation Challenges and Solutions",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "3",
-    "limit": "35",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 16,
-    "header": "Security Measures and Data Protection Policies",
-    "type": "Narrative",
-    "status": "In Process",
-    "target": "6",
-    "limit": "36",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 17,
-    "header": "Scalability and Future Proofing",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "4",
-    "limit": "37",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 18,
-    "header": "Cost-Benefit Analysis",
-    "type": "Plain language",
-    "status": "Done",
-    "target": "14",
-    "limit": "38",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 19,
-    "header": "User Training and Onboarding Experience",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "17",
-    "limit": "39",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 20,
-    "header": "Future Development Roadmap",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "11",
-    "limit": "40",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 21,
-    "header": "System Architecture Overview",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "24",
-    "limit": "18",
-    "reviewer": "Maya Johnson"
-  },
-  {
-    "id": 22,
-    "header": "Risk Management Plan",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "15",
-    "limit": "22",
-    "reviewer": "Carlos Rodriguez"
-  },
-  {
-    "id": 23,
-    "header": "Compliance Documentation",
-    "type": "Legal",
-    "status": "In Process",
-    "target": "31",
-    "limit": "27",
-    "reviewer": "Sarah Chen"
-  },
-  {
-    "id": 24,
-    "header": "API Documentation",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "8",
-    "limit": "12",
-    "reviewer": "Raj Patel"
-  },
-  {
-    "id": 25,
-    "header": "User Interface Mockups",
-    "type": "Visual",
-    "status": "In Process",
-    "target": "19",
-    "limit": "25",
-    "reviewer": "Leila Ahmadi"
-  },
-  {
-    "id": 26,
-    "header": "Database Schema",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "22",
-    "limit": "20",
-    "reviewer": "Thomas Wilson"
-  },
-  {
-    "id": 27,
-    "header": "Testing Methodology",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "17",
-    "limit": "14",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 28,
-    "header": "Deployment Strategy",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "26",
-    "limit": "30",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 29,
-    "header": "Budget Breakdown",
-    "type": "Financial",
-    "status": "In Process",
-    "target": "13",
-    "limit": "16",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 30,
-    "header": "Market Analysis",
-    "type": "Research",
-    "status": "Done",
-    "target": "29",
-    "limit": "32",
-    "reviewer": "Sophia Martinez"
-  },
-  {
-    "id": 31,
-    "header": "Competitor Comparison",
-    "type": "Research",
-    "status": "In Process",
-    "target": "21",
-    "limit": "19",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 32,
-    "header": "Maintenance Plan",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "16",
-    "limit": "23",
-    "reviewer": "Alex Thompson"
-  },
-  {
-    "id": 33,
-    "header": "User Personas",
-    "type": "Research",
-    "status": "In Process",
-    "target": "27",
-    "limit": "24",
-    "reviewer": "Nina Patel"
-  },
-  {
-    "id": 34,
-    "header": "Accessibility Compliance",
-    "type": "Legal",
-    "status": "Done",
-    "target": "18",
-    "limit": "21",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 35,
-    "header": "Performance Metrics",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "23",
-    "limit": "26",
-    "reviewer": "David Kim"
-  },
-  {
-    "id": 36,
-    "header": "Disaster Recovery Plan",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "14",
-    "limit": "17",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 37,
-    "header": "Third-party Integrations",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "25",
-    "limit": "28",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 38,
-    "header": "User Feedback Summary",
-    "type": "Research",
-    "status": "Done",
-    "target": "20",
-    "limit": "15",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 39,
-    "header": "Localization Strategy",
-    "type": "Narrative",
-    "status": "In Process",
-    "target": "12",
-    "limit": "19",
-    "reviewer": "Maria Garcia"
-  },
-  {
-    "id": 40,
-    "header": "Mobile Compatibility",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "28",
-    "limit": "31",
-    "reviewer": "James Wilson"
-  },
-  {
-    "id": 41,
-    "header": "Data Migration Plan",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "19",
-    "limit": "22",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 42,
-    "header": "Quality Assurance Protocols",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "30",
-    "limit": "33",
-    "reviewer": "Priya Singh"
-  },
-  {
-    "id": 43,
-    "header": "Stakeholder Analysis",
-    "type": "Research",
-    "status": "In Process",
-    "target": "11",
-    "limit": "14",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 44,
-    "header": "Environmental Impact Assessment",
-    "type": "Research",
-    "status": "Done",
-    "target": "24",
-    "limit": "27",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 45,
-    "header": "Intellectual Property Rights",
-    "type": "Legal",
-    "status": "In Process",
-    "target": "17",
-    "limit": "20",
-    "reviewer": "Sarah Johnson"
-  },
-  {
-    "id": 46,
-    "header": "Customer Support Framework",
-    "type": "Narrative",
-    "status": "Done",
-    "target": "22",
-    "limit": "25",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 47,
-    "header": "Version Control Strategy",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "15",
-    "limit": "18",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 48,
-    "header": "Continuous Integration Pipeline",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "26",
-    "limit": "29",
-    "reviewer": "Michael Chen"
-  },
-  {
-    "id": 49,
-    "header": "Regulatory Compliance",
-    "type": "Legal",
-    "status": "In Process",
-    "target": "13",
-    "limit": "16",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 50,
-    "header": "User Authentication System",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "28",
-    "limit": "31",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 51,
-    "header": "Data Analytics Framework",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "21",
-    "limit": "24",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 52,
-    "header": "Cloud Infrastructure",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "16",
-    "limit": "19",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 53,
-    "header": "Network Security Measures",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "29",
-    "limit": "32",
-    "reviewer": "Lisa Wong"
-  },
-  {
-    "id": 54,
-    "header": "Project Timeline",
-    "type": "Planning",
-    "status": "Done",
-    "target": "14",
-    "limit": "17",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 55,
-    "header": "Resource Allocation",
-    "type": "Planning",
-    "status": "In Process",
-    "target": "27",
-    "limit": "30",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 56,
-    "header": "Team Structure and Roles",
-    "type": "Planning",
-    "status": "Done",
-    "target": "20",
-    "limit": "23",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 57,
-    "header": "Communication Protocols",
-    "type": "Planning",
-    "status": "In Process",
-    "target": "15",
-    "limit": "18",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 58,
-    "header": "Success Metrics",
-    "type": "Planning",
-    "status": "Done",
-    "target": "30",
-    "limit": "33",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 59,
-    "header": "Internationalization Support",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "23",
-    "limit": "26",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 60,
-    "header": "Backup and Recovery Procedures",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "18",
-    "limit": "21",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 61,
-    "header": "Monitoring and Alerting System",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "25",
-    "limit": "28",
-    "reviewer": "Daniel Park"
-  },
-  {
-    "id": 62,
-    "header": "Code Review Guidelines",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "12",
-    "limit": "15",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 63,
-    "header": "Documentation Standards",
-    "type": "Technical content",
-    "status": "In Process",
-    "target": "27",
-    "limit": "30",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 64,
-    "header": "Release Management Process",
-    "type": "Planning",
-    "status": "Done",
-    "target": "22",
-    "limit": "25",
-    "reviewer": "Assign reviewer"
-  },
-  {
-    "id": 65,
-    "header": "Feature Prioritization Matrix",
-    "type": "Planning",
-    "status": "In Process",
-    "target": "19",
-    "limit": "22",
-    "reviewer": "Emma Davis"
-  },
-  {
-    "id": 66,
-    "header": "Technical Debt Assessment",
-    "type": "Technical content",
-    "status": "Done",
-    "target": "24",
-    "limit": "27",
-    "reviewer": "Eddie Lake"
-  },
-  {
-    "id": 67,
-    "header": "Capacity Planning",
-    "type": "Planning",
-    "status": "In Process",
-    "target": "21",
-    "limit": "24",
-    "reviewer": "Jamik Tashpulatov"
-  },
-  {
-    "id": 68,
-    "header": "Service Level Agreements",
-    "type": "Legal",
-    "status": "Done",
-    "target": "26",
-    "limit": "29",
-    "reviewer": "Assign reviewer"
+{
+  "assets": [
+    {
+      "id": "asset_1",
+      "name": "Primary Checking Account",
+      "category": "cash",
+      "currentValue": 15000,
+      "currency": "USD",
+      "description": "Main bank account for daily expenses",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "location": "Chase Bank"
+    },
+    {
+      "id": "asset_2",
+      "name": "High-Yield Savings",
+      "category": "cash",
+      "currentValue": 45000,
+      "currency": "USD",
+      "description": "Emergency fund and savings",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "location": "Ally Bank"
+    },
+    {
+      "id": "asset_3",
+      "name": "Primary Residence",
+      "category": "real_estate",
+      "currentValue": 650000,
+      "currency": "USD",
+      "description": "3BR/2BA home in suburban area",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "purchaseValue": 520000,
+      "purchaseDate": "2019-04-15",
+      "location": "Austin, TX"
+    },
+    {
+      "id": "asset_4",
+      "name": "2022 Tesla Model 3",
+      "category": "vehicle",
+      "currentValue": 35000,
+      "currency": "USD",
+      "description": "Electric vehicle for daily commute",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "purchaseValue": 48000,
+      "purchaseDate": "2022-03-10"
+    },
+    {
+      "id": "asset_5",
+      "name": "Home Office Equipment",
+      "category": "personal_item",
+      "currentValue": 8500,
+      "currency": "USD",
+      "description": "MacBook Pro, monitors, desk setup",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "purchaseValue": 12000,
+      "purchaseDate": "2023-01-20"
+    }
+  ],
+  "investments": [
+    {
+      "id": "inv_1",
+      "name": "Apple Inc.",
+      "symbol": "AAPL",
+      "category": "stocks",
+      "shares": 50,
+      "currentPricePerShare": 230.25,
+      "totalValue": 11512.50,
+      "costBasis": 9500,
+      "currency": "USD",
+      "broker": "Fidelity",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "dividendYield": 0.44
+    },
+    {
+      "id": "inv_2",
+      "name": "Vanguard S&P 500 ETF",
+      "symbol": "VOO",
+      "category": "etf",
+      "shares": 85,
+      "currentPricePerShare": 485.20,
+      "totalValue": 41242,
+      "costBasis": 38000,
+      "currency": "USD",
+      "broker": "Vanguard",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "dividendYield": 1.32
+    },
+    {
+      "id": "inv_3",
+      "name": "Bitcoin",
+      "symbol": "BTC",
+      "category": "crypto",
+      "shares": 0.5,
+      "currentPricePerShare": 65500,
+      "totalValue": 32750,
+      "costBasis": 25000,
+      "currency": "USD",
+      "broker": "Coinbase",
+      "lastUpdated": "2024-08-26T10:00:00Z"
+    },
+    {
+      "id": "inv_4",
+      "name": "401(k) - Target Date 2055",
+      "category": "retirement_401k",
+      "totalValue": 125000,
+      "costBasis": 98000,
+      "currency": "USD",
+      "broker": "Company 401k Plan",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "currentPricePerShare": 1,
+      "notes": "Employer matching included"
+    },
+    {
+      "id": "inv_5",
+      "name": "Roth IRA - Growth Portfolio",
+      "category": "retirement_ira",
+      "totalValue": 85000,
+      "costBasis": 72000,
+      "currency": "USD",
+      "broker": "Charles Schwab",
+      "lastUpdated": "2024-08-26T10:00:00Z",
+      "currentPricePerShare": 1,
+      "notes": "Max annual contributions"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp_1",
+      "name": "Mortgage Payment",
+      "amount": 2800,
+      "currency": "USD",
+      "category": "housing",
+      "date": "2024-08-01",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": true,
+      "paymentMethod": "Auto-pay",
+      "vendor": "First National Bank",
+      "notes": "Principal + Interest + Taxes + Insurance"
+    },
+    {
+      "id": "exp_2",
+      "name": "Groceries",
+      "amount": 650,
+      "currency": "USD",
+      "category": "food",
+      "date": "2024-08-25",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": true,
+      "paymentMethod": "Credit Card",
+      "vendor": "Whole Foods",
+      "tags": ["organic", "weekly_shopping"]
+    },
+    {
+      "id": "exp_3",
+      "name": "Tesla Auto Insurance",
+      "amount": 185,
+      "currency": "USD",
+      "category": "transportation",
+      "date": "2024-08-15",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": true,
+      "paymentMethod": "Auto-pay",
+      "vendor": "Tesla Insurance"
+    },
+    {
+      "id": "exp_4",
+      "name": "Netflix Subscription",
+      "amount": 15.99,
+      "currency": "USD",
+      "category": "entertainment",
+      "date": "2024-08-20",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": false,
+      "paymentMethod": "Credit Card",
+      "vendor": "Netflix",
+      "tags": ["streaming", "entertainment"]
+    },
+    {
+      "id": "exp_5",
+      "name": "Spotify Premium",
+      "amount": 10.99,
+      "currency": "USD",
+      "category": "entertainment",
+      "date": "2024-08-22",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": false,
+      "paymentMethod": "Credit Card",
+      "vendor": "Spotify",
+      "tags": ["music", "entertainment"]
+    },
+    {
+      "id": "exp_6",
+      "name": "Electricity Bill",
+      "amount": 120,
+      "currency": "USD",
+      "category": "bills",
+      "date": "2024-08-18",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": true,
+      "paymentMethod": "Auto-pay",
+      "vendor": "Austin Energy"
+    },
+    {
+      "id": "exp_7",
+      "name": "Gym Membership",
+      "amount": 45,
+      "currency": "USD",
+      "category": "healthcare",
+      "date": "2024-08-05",
+      "isRecurring": true,
+      "recurringFrequency": "monthly",
+      "isEssential": false,
+      "paymentMethod": "Auto-pay",
+      "vendor": "LA Fitness",
+      "tags": ["health", "fitness"]
+    },
+    {
+      "id": "exp_8",
+      "name": "Dinner Out",
+      "amount": 85,
+      "currency": "USD",
+      "category": "food",
+      "date": "2024-08-23",
+      "isRecurring": false,
+      "isEssential": false,
+      "paymentMethod": "Credit Card",
+      "vendor": "Local Restaurant",
+      "tags": ["dining", "date_night"]
+    }
+  ],
+  "income": [
+    {
+      "id": "inc_1",
+      "source": "Software Engineer Salary",
+      "amount": 8500,
+      "currency": "USD",
+      "category": "salary",
+      "frequency": "monthly",
+      "date": "2024-08-30",
+      "isAfterTax": false,
+      "taxWithholding": 2125,
+      "employer": "Tech Corp Inc.",
+      "description": "Base salary as Senior Software Engineer",
+      "notes": "Direct deposit"
+    },
+    {
+      "id": "inc_2",
+      "source": "Freelance Web Development",
+      "amount": 2500,
+      "currency": "USD",
+      "category": "freelance",
+      "frequency": "monthly",
+      "date": "2024-08-25",
+      "isAfterTax": false,
+      "employer": "Various Clients",
+      "description": "Side projects and consulting work",
+      "notes": "Variable income based on project availability"
+    },
+    {
+      "id": "inc_3",
+      "source": "Investment Dividends",
+      "amount": 150,
+      "currency": "USD",
+      "category": "dividends",
+      "frequency": "quarterly",
+      "date": "2024-08-15",
+      "isAfterTax": true,
+      "description": "Quarterly dividends from stock portfolio",
+      "notes": "Reinvested automatically"
+    },
+    {
+      "id": "inc_4",
+      "source": "High-Yield Savings Interest",
+      "amount": 180,
+      "currency": "USD",
+      "category": "interest",
+      "frequency": "monthly",
+      "date": "2024-08-31",
+      "isAfterTax": true,
+      "description": "4.5% APY on savings account",
+      "notes": "Compounded daily"
+    },
+    {
+      "id": "inc_5",
+      "source": "Annual Performance Bonus",
+      "amount": 12000,
+      "currency": "USD",
+      "category": "bonus",
+      "frequency": "annually",
+      "date": "2024-03-15",
+      "isAfterTax": false,
+      "taxWithholding": 3600,
+      "employer": "Tech Corp Inc.",
+      "description": "Annual performance and retention bonus",
+      "notes": "Based on company and individual performance"
+    }
+  ],
+  "goals": [
+    {
+      "id": "goal_1",
+      "name": "Emergency Fund",
+      "targetAmount": 50000,
+      "currentAmount": 45000,
+      "currency": "USD",
+      "targetDate": "2024-12-31",
+      "category": "emergency_fund",
+      "priority": "high",
+      "status": "in_progress",
+      "monthlyContribution": 1000,
+      "notes": "6 months of expenses saved"
+    },
+    {
+      "id": "goal_2",
+      "name": "Vacation to Europe",
+      "targetAmount": 8000,
+      "currentAmount": 3200,
+      "currency": "USD",
+      "targetDate": "2025-06-01",
+      "category": "vacation",
+      "priority": "medium",
+      "status": "in_progress",
+      "monthlyContribution": 600,
+      "notes": "Two-week trip to Italy and France"
+    },
+    {
+      "id": "goal_3",
+      "name": "Retirement by 50",
+      "targetAmount": 2000000,
+      "currentAmount": 210000,
+      "currency": "USD",
+      "targetDate": "2045-01-01",
+      "category": "retirement",
+      "priority": "high",
+      "status": "in_progress",
+      "monthlyContribution": 3500,
+      "notes": "Aggressive savings and investment strategy"
+    },
+    {
+      "id": "goal_4",
+      "name": "New Car Down Payment",
+      "targetAmount": 15000,
+      "currentAmount": 7500,
+      "currency": "USD",
+      "targetDate": "2025-12-31",
+      "category": "other",
+      "priority": "low",
+      "status": "planning",
+      "monthlyContribution": 500,
+      "notes": "Replacement for current Tesla when lease ends"
+    }
+  ],
+  "lastUpdated": "2024-08-26T10:00:00Z",
+  "user": {
+    "preferredCurrency": "USD",
+    "timezone": "America/Chicago"
   }
-]
+}

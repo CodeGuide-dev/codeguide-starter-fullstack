@@ -5,20 +5,17 @@ import Link from "next/link"
 import Image from "next/image"
 import { useSession } from "@/lib/auth-client"
 import {
-  IconCamera,
-  IconChartBar,
   IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
+  IconCoin,
+  IconTrendingUp,
+  IconCreditCard,
+  IconWallet,
+  IconTarget,
+  IconChartPie3,
   IconHelp,
-  IconListDetails,
-  IconReport,
   IconSearch,
   IconSettings,
-  IconUsers,
+  IconReportAnalytics,
 } from "@tabler/icons-react"
 
 import { NavDocuments } from "@/components/nav-documents"
@@ -38,75 +35,60 @@ import {
 const staticData = {
   navMain: [
     {
-      title: "Dashboard",
-      url: "#",
+      title: "Overview",
+      url: "/dashboard",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: "Assets",
+      url: "/dashboard/assets",
+      icon: IconWallet,
     },
     {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
+      title: "Investments",
+      url: "/dashboard/investments", 
+      icon: IconTrendingUp,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
+      title: "Expenses",
+      url: "/dashboard/expenses",
+      icon: IconCreditCard,
     },
     {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
+      title: "Income",
+      url: "/dashboard/income",
+      icon: IconCoin,
     },
   ],
   navClouds: [
     {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
+      title: "Goals",
+      icon: IconTarget,
+      isActive: false,
+      url: "/dashboard/goals",
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: "Active Goals",
+          url: "/dashboard/goals/active",
         },
         {
-          title: "Archived",
-          url: "#",
+          title: "Completed",
+          url: "/dashboard/goals/completed",
         },
       ],
     },
     {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
+      title: "Analytics",
+      icon: IconChartPie3,
+      url: "/dashboard/analytics",
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: "Net Worth Trends",
+          url: "/dashboard/analytics/networth",
         },
         {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
+          title: "Cash Flow Analysis",
+          url: "/dashboard/analytics/cashflow",
         },
       ],
     },
@@ -114,12 +96,12 @@ const staticData = {
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/dashboard/settings",
       icon: IconSettings,
     },
     {
       title: "Get Help",
-      url: "#",
+      url: "/help",
       icon: IconHelp,
     },
     {
@@ -130,19 +112,9 @@ const staticData = {
   ],
   documents: [
     {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
       name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
+      url: "/dashboard/reports",
+      icon: IconReportAnalytics,
     },
   ],
 }
@@ -170,8 +142,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link href="/">
-                <Image src="/codeguide-logo.png" alt="CodeGuide" width={32} height={32} className="rounded-lg" />
-                <span className="text-base font-semibold font-parkinsans">CodeGuide</span>
+                <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-2 rounded-lg">
+                  <IconCoin className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-base font-semibold">Claude Finance</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
