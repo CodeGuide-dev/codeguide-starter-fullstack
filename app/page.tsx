@@ -32,7 +32,7 @@ export default function Home() {
           <div className="flex items-center space-x-3">
             <DollarSign className="h-12 w-12 text-primary" />
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-              Claude Finance
+              Kimi Finance
             </h1>
           </div>
         </div>
