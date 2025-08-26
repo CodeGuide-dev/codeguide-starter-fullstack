@@ -28,13 +28,15 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronLeft, ChevronRight, Settings, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Settings, Search, Edit, Trash2 } from "lucide-react";
 
 interface FinanceDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   title: string;
   description?: string;
+  onEdit?: (item: TData) => void;
+  onDelete?: (id: string) => void;
 }
 
 export function FinanceDataTable<TData, TValue>({
@@ -42,14 +44,48 @@ export function FinanceDataTable<TData, TValue>({
   data,
   title,
   description,
+  onEdit,
+  onDelete,
 }: FinanceDataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState({});
 
+  // Add action columns if onEdit or onDelete are provided
+  const tableColumns = [...columns];
+  
+  if (onEdit || onDelete) {
+    tableColumns.push({
+      id: "actions",
+      header: "Actions",
+      cell: ({ row }) => (
+        <div className="flex space-x-2">
+          {onEdit && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => onEdit(row.original)}
+            >
+              <Edit className="h-4 w-4" />
+            </Button>
+          )}
+          {onDelete && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => onDelete((row.original as any).id)}
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      ),
+    });
+  }
+
   const table = useReactTable({
     data,
-    columns,
+    columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
