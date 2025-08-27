@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,6 +36,8 @@ export default function SignUpPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const redirectTo = searchParams.get('redirect') || '/dashboard';
 
     const form = useForm<SignUpForm>({
         resolver: zodResolver(signUpSchema),
@@ -61,7 +63,7 @@ export default function SignUpPage() {
             if (result.error) {
                 setError(result.error.message || "Sign up failed");
             } else {
-                router.push("/dashboard");
+                router.push(redirectTo);
             }
         } catch (err) {
             setError("An unexpected error occurred");
