@@ -50,12 +50,27 @@ body {
   
   .theme-green,
   .theme-green-scaled {
-    --primary: var(--color-lime-600);
-    --primary-foreground: var(--color-lime-50);
+    --primary: var(--color-green-600);
+    --primary-foreground: var(--color-green-50);
   
     @variant dark {
-      --primary: var(--color-lime-600);
-      --primary-foreground: var(--color-lime-50);
+      --primary: var(--color-green-500);
+      --primary-foreground: var(--color-green-50);
+    }
+  }
+
+  .theme-finance,
+  .theme-finance-scaled {
+    --primary: var(--color-emerald-600);
+    --primary-foreground: var(--color-emerald-50);
+    --accent: var(--color-green-100);
+    --accent-foreground: var(--color-green-900);
+  
+    @variant dark {
+      --primary: var(--color-emerald-500);
+      --primary-foreground: var(--color-emerald-50);
+      --accent: var(--color-green-800);
+      --accent-foreground: var(--color-green-200);
     }
   }
   

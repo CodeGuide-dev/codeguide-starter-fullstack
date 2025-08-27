@@ -45,9 +45,9 @@ export default function SignInPage() {
         <div className="min-h-screen flex items-center justify-center bg-background px-4">
             <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">Sign In</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Welcome Back to Claude Finance</CardTitle>
                     <CardDescription>
-                        Enter your email and password to access your account
+                        Access your financial dashboard and continue tracking your wealth
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -62,7 +62,7 @@ export default function SignInPage() {
                             <Input
                                 id="email"
                                 type="email"
-                                placeholder="Enter your email"
+                                placeholder="your.email@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -74,30 +74,30 @@ export default function SignInPage() {
                             <Input
                                 id="password"
                                 type="password"
-                                placeholder="Enter your password"
+                                placeholder="Your secure password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 disabled={isLoading}
                             />
                         </div>
-                        <Button type="submit" className="w-full" disabled={isLoading}>
+                        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
                             {isLoading ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Signing in...
+                                    Accessing your dashboard...
                                 </>
                             ) : (
-                                "Sign In"
+                                "Access My Financial Dashboard"
                             )}
                         </Button>
                     </form>
                 </CardContent>
                 <CardFooter className="text-center">
                     <p className="text-sm text-muted-foreground">
-                        Don&apos;t have an account?{" "}
-                        <Link href="/sign-up" className="font-medium text-primary hover:underline">
-                            Sign up
+                        New to Claude Finance?{" "}
+                        <Link href="/sign-up" className="font-medium text-green-600 hover:underline">
+                            Start your financial journey
                         </Link>
                     </p>
                 </CardFooter>
